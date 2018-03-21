@@ -35,7 +35,7 @@ def main():
 
     unique_actor_names, actor_idx = np.unique(actors, return_inverse=True)
 
-    plt.scatter(rand_jitter(years), rand_jitter(actor_idx), alpha=0.1)
+    plt.scatter(jitter(years), jitter(actor_idx), alpha=0.1)
     plt.xticks(years_unique, years_abbrev)
     plt.yticks(np.unique(actor_idx), unique_actor_names, size='small', rotation=20)
     plt.show()
@@ -44,6 +44,11 @@ def main():
 def rand_jitter(arr):
     stdev = .01 * (max(arr) - min(arr))
     return arr + np.random.randn(len(arr)) * stdev
+
+
+def jitter(values, amount=0.5):
+    n = len(values)
+    return np.random.uniform(-amount, +amount, n) + values
 
 
 if __name__ == '__main__':
